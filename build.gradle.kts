@@ -24,7 +24,7 @@ dependencies {
     implementation("dev.rollczi:litecommands-bukkit:3.9.7")
     implementation("fr.mrmicky:FastInv:3.1.1")
     implementation("com.zaxxer:HikariCP:5.1.0")
-
+    implementation("org.mariadb.jdbc:mariadb-java-client:3.5.3")
     compileOnly("com.projectkorra:projectkorra:1.12.0")
     compileOnly("org.projectlombok:lombok:1.18.34")
 }

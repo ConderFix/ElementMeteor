@@ -1,6 +1,4 @@
 mariadb:
-  host: 127.0.0.1
-  port: 3306
+  url: "jdbc:mariadb://127.0.0.1:3306/uses"
   user: root
   password: "123123"
-  database: uses

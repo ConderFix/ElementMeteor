@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import ru.elementmeteor.Config;
 import ru.elementmeteor.data.User;
 
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,12 +21,14 @@ public class MariaDBStorage implements Storage {
 
     public MariaDBStorage() {
         final HikariConfig config = new HikariConfig();
-        final String url = "jdbc:mysql://" +
-                Config.MARIADB.host + ":" +
-                Config.MARIADB.port + "/" +
-                Config.MARIADB.database;
 
-        config.setJdbcUrl(url);
+        try {
+            Class.forName("org.mariadb.jdbc.Driver").getDeclaredConstructor().newInstance();
+        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
+
+        config.setJdbcUrl(Config.MARIADB.url);
         config.setUsername(Config.MARIADB.user);
         config.setPassword(Config.MARIADB.password);
         config.setMaximumPoolSize(3);

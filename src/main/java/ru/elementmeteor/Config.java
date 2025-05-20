@@ -11,17 +11,15 @@ public class Config {
     }
 
     public static class MARIADB {
-        public static String host, user, password, database;
+        public static String url, user, password;
         public static int port;
     }
 
     private static void parseMariaDB(Configuration config) {
         final ConfigurationSection section = config.getConfigurationSection("mariadb");
 
-        MARIADB.host = section.getString("host");
+        MARIADB.url = section.getString("url");
         MARIADB.user = section.getString("user");
         MARIADB.password = section.getString("password");
-        MARIADB.database = section.getString("database");
-        MARIADB.port = section.getInt("port");
     }
 }
