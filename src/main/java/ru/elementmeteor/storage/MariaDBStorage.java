@@ -17,17 +17,12 @@ import java.util.concurrent.Executors;
 public class MariaDBStorage implements Storage {
 
     private final HikariDataSource dataSource;
-    private final ExecutorService dbExecutor = Executors.newFixedThreadPool(10);
+    private final ExecutorService dbExecutor = Executors.newFixedThreadPool(2);
 
     public MariaDBStorage() {
         final HikariConfig config = new HikariConfig();
 
-        try {
-            Class.forName("org.mariadb.jdbc.Driver").getDeclaredConstructor().newInstance();
-        } catch (ClassNotFoundException | InvocationTargetException | InstantiationException | IllegalAccessException | NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        }
-
+        config.setDriverClassName("org.mariadb.jdbc.Driver");
         config.setJdbcUrl(Config.MARIADB.url);
         config.setUsername(Config.MARIADB.user);
         config.setPassword(Config.MARIADB.password);

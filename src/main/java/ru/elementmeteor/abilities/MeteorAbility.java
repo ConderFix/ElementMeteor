@@ -2,7 +2,10 @@ package ru.elementmeteor.abilities;
 
 import com.projectkorra.projectkorra.ability.*;
 import org.bukkit.Location;
+import org.bukkit.entity.Fireball;
 import org.bukkit.entity.Player;
+import org.bukkit.persistence.PersistentDataType;
+import ru.elementmeteor.ElementMeteor;
 
 public class MeteorAbility extends FireAbility {
 
